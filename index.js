@@ -3,16 +3,20 @@ const signupBtn = document.getElementById('email-signup');
 const contactBtn = document.getElementById('contact');
 
 const interestSelectModal = document.getElementById('int-select-modal');
-const signupModal = document.getElementById('signup-form');
-const contactModal = document.getElementById('inquire-form');
+const signupModal = document.getElementById('signup-container');
+const contactModal = document.getElementById('inquire-container');
 
 const interestCloseBtn = document.getElementById('int-select-closeBtn');
 const signupCloseBtn = document.getElementById("signup-close-btn");
 const contactCloseBtn = document.getElementById("inquiry-close-btn");
 
+const contactSubmitBtn = document.getElementById('contact-submit');
+const signupSubmitBtn = document.getElementById('signup-submit');
+
 const bg = document.getElementById('wave');
 
 const contactForm = document.getElementById('contact-form');
+const signupForm = document.getElementById('signup-form');
 
 const addShowClass = (elem) => {
   elem.classList.add('show');
@@ -21,9 +25,17 @@ const removeShowClass = (elem) => {
   elem.classList.remove('show');
 };
 
+const resetContactForm = () => {
+  contactForm.querySelector('input[name="name"]').value = '';
+  contactForm.querySelector('input[name="email"]').value = '';
+  contactForm.querySelector('input[name="phone"]').value = '';
+  contactForm.querySelector('textarea[name="msg"]').value = '';
+};
+
 const contactFormSubmit = (e) => {
   e.preventDefault();
-  const formData = new FormData();
+  contactSubmitBtn.value = 'Submitting';
+  let formData = new FormData();
 
   formData.append(
     'name',
@@ -45,25 +57,83 @@ const contactFormSubmit = (e) => {
     contactForm.querySelector('textarea[name="msg"]').value
   );
 
-  fetch("https://exavier.getform.com/rj587",
+  formData.append(
+    'device',
+    window.navigator.userAgent
+  );
+
+  fetch("https://script.google.com/macros/s/AKfycby-vYMUyg9B5Kzly5cwu2-xMgf1-baAKTXZOQ0Zw_F1LeEoePRAFBK2LP9bOCJrSkA5-g/exec",
     {
       method: "POST",
-      body: formData,
+      body: formData
     })
-    .then(response => console.log(response))
+    .then(response => response.json())
+    .then(data => {
+      contactSubmitBtn.value = 'Submit';
+      resetContactForm();
+      removeShowClass(contactModal);
+    })
     .catch(error => console.log(error))
-
-  // const name = contactForm.querySelector('input[name="name"]').value;
-  // const email = contactForm.querySelector('input[name="email"]').value;
-  // const phone = contactForm.querySelector('input[name="phone"]').value;
-  // const msg = contactForm.querySelector('textarea[name="msg"]').value;
-
-  // console.log(name);
-  // console.log(email);
-  // console.log(phone);
-  // console.log(msg);
 };
 
+const signupFormSubmit = (e) => {
+  e.preventDefault();
+  signupSubmitBtn.value = 'Submitting';
+  let formData = new FormData();
+
+  formData.append(
+    'firstName',
+    signupForm.querySelector('input[name="fname"]').value
+  );
+
+  formData.append(
+    'lastName',
+    signupForm.querySelector('input[name="lname"]').value
+  );
+
+  formData.append(
+    'email',
+    signupForm.querySelector('input[name="email"]').value
+  );
+
+  formData.append(
+    'ageRange',
+    signupForm.querySelector('select[name="age"]').value
+  );
+
+  formData.append(
+    'country',
+    signupForm.querySelector('select[name="country"]').value
+  );
+
+  formData.append(
+    'postcode',
+    signupForm.querySelector('input[name="zcode"]').value
+  );
+
+  formData.append(
+    'phone',
+    signupForm.querySelector('input[name="phone"]').value
+  );
+
+  formData.append(
+    'device',
+    window.navigator.userAgent
+  );
+
+  fetch("https://script.google.com/macros/s/AKfycbylrpmvfO8qCq5c1YtrkFVKPI58KakLBzLc3CwyAJ-9mhWD2AWs1DDqHbheDeIDkuLj/exec",
+    {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      signupSubmitBtn.value = 'Submit';
+      // resetContactForm();
+      removeShowClass(signupModal);
+    })
+    .catch(error => console.log(error))
+};
 
 /* INTEREST MAIN */
 
@@ -87,11 +157,12 @@ signupCloseBtn.addEventListener('click', () => {
   removeShowClass(signupModal);
 });
 
+signupForm.addEventListener('submit', signupFormSubmit);
+
 
 /* CONTACT */
 
 contactBtn.addEventListener('click', () => {
-  console.log('Contact btn clicked');
   removeShowClass(interestSelectModal);
   addShowClass(contactModal);
 });

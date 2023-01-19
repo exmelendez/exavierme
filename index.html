@@ -100,39 +100,96 @@
     </div>
   </div>
 
-  <!-- EMAIL SIGNUP POPUP -->
 
-  <div id="signup-form" class="container">
-    <span id="signup-close-btn" class="close-btn">&times;</span>
-    <form action="/action_page.php">
+
+  <!-- CONTACT POPUP -->
+
+  <div id="inquire-container" class="container">
+    <span id="inquiry-close-btn" class="close-btn">&times;</span>
+    <form id="contact-form">
+
       <div class="row">
         <div class="col-25">
-          <label for="fname">First Name<span class="req-field">*</span></label>
+          <label for="name">Name<span class="req-field">*</span></label>
         </div>
         <div class="col-75">
-          <input type="text" id="fname" name="firstname" placeholder="Your first name.." required>
+          <input type="text" id="name" name="name" placeholder="Your name.." required>
         </div>
       </div>
+
       <div class="row">
         <div class="col-25">
-          <label for="lname">Last Name<span class="req-field">*</span></label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">Email<span class="req-field">*</span></label>
+          <label for="email">Email<span class="req-field">*</span></label>
         </div>
         <div class="col-75">
           <input type="email" id="email" name="email" placeholder="Your email.." required>
         </div>
       </div>
+
       <div class="row">
         <div class="col-25">
-          <label for="country">Age range?<span class="req-field">*</span></label>
+          <label for="phone">Phone</label>
         </div>
+        <div class="col-75">
+          <input type="tel" id="phone" name="phone" placeholder="Your phone number..">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="msg">Message<span class="req-field">*</span></label>
+        </div>
+        <div class="col-75">
+          <textarea id="msg" name="msg" placeholder="Your message.." required></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <input id="contact-submit" type="submit" value="Submit">
+      </div>
+    </form>
+    <p class="form-note">* = required</p>
+  </div>
+
+
+  <!-- SIGNUP POPUP -->
+
+  <div id="signup-container" class="container">
+    <span id="signup-close-btn" class="close-btn">&times;</span>
+    <form id="signup-form">
+
+      <div class="row">
+        <div class="col-25">
+          <label for="fname">First Name<span class="req-field">*</span></label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="fname" name="fname" placeholder="Your first name.." required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="lname">Last Name<span class="req-field">*</span></label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="lname" name="lname" placeholder="Your last name.." required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="email">Email<span class="req-field">*</span></label>
+        </div>
+        <div class="col-75">
+          <input type="email" id="email" name="email" placeholder="Your email.." required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="age">Age range?<span class="req-field">*</span></label>
+        </div>
+
         <div class="col-75">
           <select id="age" name="age" required>
             <option hidden disabled selected value> -- select an option -- </option>
@@ -149,6 +206,7 @@
           </select>
         </div>
       </div>
+
       <div class="row">
         <div class="col-25">
           <label for="country">Country of residence<span class="req-field">*</span></label>
@@ -427,73 +485,24 @@
       </div>
 
       <div class="row">
-        <input type="submit" value="Submit">
+        <input id="signup-submit" type="submit" value="Submit">
       </div>
     </form>
     <p class="form-note">* = required</p>
   </div>
 
-  <!-- CONTACT POPUP -->
-
-  <div id="inquire-form" class="container">
-    <span id="inquiry-close-btn" class="close-btn">&times;</span>
-    <form id="contact-form" action="/action_page.php">
-
-      <div class="row">
-        <div class="col-25">
-          <label for="name">Name<span class="req-field">*</span></label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="name" name="name" placeholder="Your name.." required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="email">Email<span class="req-field">*</span></label>
-        </div>
-        <div class="col-75">
-          <input type="email" id="email" name="email" placeholder="Your email.." required>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="phone">Phone</label>
-        </div>
-        <div class="col-75">
-          <input type="tel" id="phone" name="phone" placeholder="Your phone number..">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="msg">Message<span class="req-field">*</span></label>
-        </div>
-        <div class="col-75">
-          <textarea id="msg" name="msg" placeholder="Your message.." required></textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <input type="submit" value="Submit">
-      </div>
-    </form>
-    <p class="form-note">* = required</p>
-  </div>
 
   <!-- Animated BG -->
   <div class="waveWrapper waveAnimation">
     <div class="waveWrapperInner bgTop">
-      <div id="wave" class="wave waveTop"
-        style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+      <div id="wave" class="wave waveTop"></div>
     </div>
     <div class="waveWrapperInner bgMiddle">
-      <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
+      <div class="wave waveMiddle">
       </div>
     </div>
     <div class="waveWrapperInner bgBottom">
-      <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
+      <div class="wave waveBottom">
       </div>
     </div>
   </div>
