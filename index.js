@@ -73,7 +73,7 @@ const contactFormSubmit = (e) => {
     window.navigator.userAgent
   );
 
-  fetch("https://script.google.com/macros/s/AKfycby-vYMUyg9B5Kzly5cwu2-xMgf1-baAKTXZOQ0Zw_F1LeEoePRAFBK2LP9bOCJrSkA5-g/exec",
+  fetch("https://script.google.com/macros/s/AKfycby41xgKuw80e6qdCdslWf5w9B-0XuFf0mAwVapmZJsN9hxSsvnn7MfFxpn4CySrmMBDjw/exec",
     {
       method: "POST",
       body: formData
