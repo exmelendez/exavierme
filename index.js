@@ -18,6 +18,8 @@ const bg = document.getElementById('wave');
 const contactForm = document.getElementById('contact-form');
 const signupForm = document.getElementById('signup-form');
 
+const toast = document.getElementById('snackbar');
+
 const addShowClass = (elem) => {
   elem.classList.add('show');
 };
@@ -25,11 +27,20 @@ const removeShowClass = (elem) => {
   elem.classList.remove('show');
 };
 
-const resetContactForm = () => {
-  contactForm.querySelector('input[name="name"]').value = '';
-  contactForm.querySelector('input[name="email"]').value = '';
-  contactForm.querySelector('input[name="phone"]').value = '';
-  contactForm.querySelector('textarea[name="msg"]').value = '';
+const resetForm = (formType, form, userObj) => {
+  form.reset();
+
+  if (formType === "signup") {
+    toast.textContent = `You rock ${userObj.fName}, Thanks for signing up to receive news, updates and give aways.`;
+    toast.className = 'show';
+  } else {
+    toast.textContent = `Thank you for writing ${userObj.name}, someone will respond back to you within 5-7 business days.`;
+    toast.className = 'show';
+  }
+
+  setTimeout(() => {
+    toast.classList.remove('show')
+  }, 4000);
 };
 
 const contactFormSubmit = (e) => {
@@ -70,7 +81,7 @@ const contactFormSubmit = (e) => {
     .then(response => response.json())
     .then(data => {
       contactSubmitBtn.value = 'Submit';
-      resetContactForm();
+      resetForm('contact', contactForm, data);
       removeShowClass(contactModal);
     })
     .catch(error => console.log(error))
@@ -121,7 +132,7 @@ const signupFormSubmit = (e) => {
     window.navigator.userAgent
   );
 
-  fetch("https://script.google.com/macros/s/AKfycbylrpmvfO8qCq5c1YtrkFVKPI58KakLBzLc3CwyAJ-9mhWD2AWs1DDqHbheDeIDkuLj/exec",
+  fetch("https://script.google.com/macros/s/AKfycbx21tCMPM0Gk-spNNw-sDukkyzleDd3wfK2yBUGBLIDjsFiHFZquQnOaB1Z9ZOxsFxh/exec",
     {
       method: "POST",
       body: formData
@@ -129,7 +140,7 @@ const signupFormSubmit = (e) => {
     .then(response => response.json())
     .then(data => {
       signupSubmitBtn.value = 'Submit';
-      // resetContactForm();
+      resetForm('signup', signupForm, data);
       removeShowClass(signupModal);
     })
     .catch(error => console.log(error))
