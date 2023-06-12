@@ -37,7 +37,7 @@ body {
 }
 
 content {
-  background-color: #f3d1d9;
+  background-color: #EFCE06;
   color: black;
   margin: 0;
   text-align: center;
@@ -76,7 +76,7 @@ p {
 }
 
 .sig-logo {
-  width: 30%;
+  width: 50%;
   margin-top: 16px;
 }
 
@@ -113,12 +113,11 @@ a:hover {
 }
 
 .right-border {
-  border-right: 1px solid #fcf3f5;
+  border-right: 1px solid #fff;
 }
 
 .top-section {
   font-size: 16px;
-  background-color: #f3d1d9;
   width: 50%;
   font-weight: bold;
 
